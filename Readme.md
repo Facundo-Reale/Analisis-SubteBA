@@ -11,7 +11,7 @@ Este repositorio contiene el análisis exploratorio realizado sobre los datos hi
 2. **Limpieza y normalización**
 3. **Enriquecimiento con variables externas (clima y feriados)**
 4. **Análisis exploratorio con visualizaciones**
-5. **Generación de datasets agregados para modelado predictivo**
+5. **Generación de mapa interactivo para visualizar el flujo promedio de pasajeros por estación**
 
 ---
 
