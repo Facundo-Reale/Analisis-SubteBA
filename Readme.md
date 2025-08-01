@@ -60,18 +60,17 @@ Para facilitar el análisis:
 
 ### 5️⃣ Análisis Exploratorio  📊
 📌 Insights: 
-## - Distribucion simil a un binominal debido a la baja frecuencia en fin de semanas
 ![Histograma de pasajeros diarios](images/histograma.png)
-### - Menor demanda los fin de  semanas, se puede observar gracias a la distribución  de los diferentes días de la semana
+###  Distribucion simil a un binomial debido a la baja frecuencia en fin de semanas
 ![Distribucion por día](images/distribucion_por_dia.png)
-## - Algunos outliers en especial los día de semana, esto se puede deducir que es debido a los feriados o paros de trasporte
+###  Menor demanda los fin de  semanas, se puede observar gracias a la distribución  de los diferentes días de la semana
 ![Distribucion por mes y dia de la semana](images/boxplot_meses.png)
-## - Las líneas mas utilizadas son la B y D hasta 2024 que la Línea D entro en obras durante los meses de Enero y Febrero, luego de las obras el flujo de pasajeros se equipara al de la Línea A
-## - Efecto estacional con caídas en meses de vacaciones (Enero y Febrero).
+###  Algunos outliers en especial los día de semana, esto se puede deducir que es debido a los feriados o paros de trasporte
 ![Tendiencia Mensual del pronedio diario](images/tendencia_por_linea.png)
-## - En promedio las lineas B, D y A son las que mas pasajeros trasportan
+###  Las líneas mas utilizadas son la B y D hasta 2024 que la Línea D entro en obras durante los meses de Enero y Febrero, luego de las obras el flujo de pasajeros se equipara al de la Línea A
+###  Efecto estacional con caídas en meses de vacaciones (Enero y Febrero).
 ![Pasajeros promedio por línea](images/pax_promedio_linea.png)
-
+###  En promedio las lineas B, D y A son las que mas pasajeros trasportan
 ---
 ### 6️⃣ Análisis Geoespacial y Visualización Interactiva 🗺️
 
