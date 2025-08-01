@@ -88,7 +88,7 @@ Con esta información, se generó un **mapa interactivo** con Folium que permite
 -   Una leyenda y título fijos para mejorar la experiencia visual.
     
 Este mapa facilita la comprensión espacial del flujo de pasajeros y permite identificar patrones y puntos clave en la red del SubteBA.
-
+Podés ver el mapa interactivo con la visualización geográfica de las estaciones y datos [aquí](https://facundo-reale.github.io/Analisis-SubteBA/mapa_interactivo.html).
 ---
 
 
