@@ -7,16 +7,12 @@ import seaborn as sns
 import matplotlib.ticker as mtick
 import joypy
 import matplotlib.cm as cm
-import requests
-import matplotlib.font_manager as fm 
 import matplotlib.image as mpimg 
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox 
 import os
 from PIL import Image 
 from matplotlib.ticker import FuncFormatter
-import unicodedata
 import re
-import unidecode
 from thefuzz import process
 import folium
 from geopy.distance import geodesic
