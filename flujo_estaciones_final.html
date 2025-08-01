@@ -1,0 +1,3202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7f2df741e76c9eee058cc5fcd89f370c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_7f2df741e76c9eee058cc5fcd89f370c" ></div>
+        
+    
+<div style="
+    position: fixed;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background-color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+">
+    Flujo diario promedio de pasajeros por estación de subte
+</div>
+    
+<div style="
+    position: fixed; 
+    bottom: 50px; left: 50px; width: 180px; height: 170px; 
+    background-color: white; 
+    border: 2px solid grey; 
+    z-index: 9999; 
+    font-size: 14px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+">
+    <b>Líneas de Subte</b><br>
+    &nbsp;<i style="background:#00BFFF;width:18px;height:18px;float:left;margin-right:8px;"></i>Linea A<br>
+    &nbsp;<i style="background:#FF0000;width:18px;height:18px;float:left;margin-right:8px;"></i>Linea B<br>
+    &nbsp;<i style="background:#00008B;width:18px;height:18px;float:left;margin-right:8px;"></i>Linea C<br>
+    &nbsp;<i style="background:#228B22;width:18px;height:18px;float:left;margin-right:8px;"></i>Linea D<br>
+    &nbsp;<i style="background:#800080;width:18px;height:18px;float:left;margin-right:8px;"></i>Linea E<br>
+    &nbsp;<i style="background:#DAA520;width:18px;height:18px;float:left;margin-right:8px;"></i>Linea H<br>
+</div>
+</body>
+<script>
+    
+    
+            var map_7f2df741e76c9eee058cc5fcd89f370c = L.map(
+                "map_7f2df741e76c9eee058cc5fcd89f370c",
+                {
+                    center: [-34.606507619999995, -58.41036159288888],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_5f6dc370ec0e8bbc343bf38d071d1b20 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5f6dc370ec0e8bbc343bf38d071d1b20.addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+            var circle_marker_efcca9d456accd1cff9e3cf2cc1d182b = L.circleMarker(
+                [-34.55564177, -58.46237841],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.998316082914872, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_236064c6ee152bf8adb9da8a78bf1ad7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2548d2abfb1a4b47dc91fcaa6797b56f = $(`<div id="html_2548d2abfb1a4b47dc91fcaa6797b56f" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CONGRESO DE TUCUMAN<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 17475</div>`)[0];
+                popup_236064c6ee152bf8adb9da8a78bf1ad7.setContent(html_2548d2abfb1a4b47dc91fcaa6797b56f);
+            
+        
+
+        circle_marker_efcca9d456accd1cff9e3cf2cc1d182b.bindPopup(popup_236064c6ee152bf8adb9da8a78bf1ad7)
+        ;
+
+        
+    
+    
+            circle_marker_efcca9d456accd1cff9e3cf2cc1d182b.bindTooltip(
+                `<div>
+                     CONGRESO DE TUCUMAN (LineaD) - 17475 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2beb833da26940a98080284fad43f604 = L.circleMarker(
+                [-34.56230909, -58.45648913],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.4052782387248905, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_4c4d764838a714f267ddfc536292e431 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_07b91288483c154e045e4bdac3ae14f6 = $(`<div id="html_07b91288483c154e045e4bdac3ae14f6" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> JURAMENTO<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 10512</div>`)[0];
+                popup_4c4d764838a714f267ddfc536292e431.setContent(html_07b91288483c154e045e4bdac3ae14f6);
+            
+        
+
+        circle_marker_2beb833da26940a98080284fad43f604.bindPopup(popup_4c4d764838a714f267ddfc536292e431)
+        ;
+
+        
+    
+    
+            circle_marker_2beb833da26940a98080284fad43f604.bindTooltip(
+                `<div>
+                     JURAMENTO (LineaD) - 10512 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_322520b562a30fffbcb7abf1c73c0d6d = L.circleMarker(
+                [-34.56621524, -58.4521256],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.475192960190513, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_9be5432fd6bc14e40b1c7babaf2976cc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_12f0247524dda2dc3400454f997294ba = $(`<div id="html_12f0247524dda2dc3400454f997294ba" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> JOSE HERNANDEZ<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 6447</div>`)[0];
+                popup_9be5432fd6bc14e40b1c7babaf2976cc.setContent(html_12f0247524dda2dc3400454f997294ba);
+            
+        
+
+        circle_marker_322520b562a30fffbcb7abf1c73c0d6d.bindPopup(popup_9be5432fd6bc14e40b1c7babaf2976cc)
+        ;
+
+        
+    
+    
+            circle_marker_322520b562a30fffbcb7abf1c73c0d6d.bindTooltip(
+                `<div>
+                     JOSE HERNANDEZ (LineaD) - 6447 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7ff7acd82da42d9ac2969f5dadb8ce9f = L.circleMarker(
+                [-34.57001231, -58.44466815],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.613987243464161, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_cd9f34cd86f13f0e7a7e71772f6b2a9a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f3bc4d1db06624cf25b41c48c91b36e7 = $(`<div id="html_f3bc4d1db06624cf25b41c48c91b36e7" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> OLLEROS<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 7054</div>`)[0];
+                popup_cd9f34cd86f13f0e7a7e71772f6b2a9a.setContent(html_f3bc4d1db06624cf25b41c48c91b36e7);
+            
+        
+
+        circle_marker_7ff7acd82da42d9ac2969f5dadb8ce9f.bindPopup(popup_cd9f34cd86f13f0e7a7e71772f6b2a9a)
+        ;
+
+        
+    
+    
+            circle_marker_7ff7acd82da42d9ac2969f5dadb8ce9f.bindTooltip(
+                `<div>
+                     OLLEROS (LineaD) - 7054 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_04f838741c55c387ee2ea0f9e6e8f6ed = L.circleMarker(
+                [-34.57431891, -58.48638535],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.714186521206397, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_9d30f37d345fafa1476ac9af4dc00aa0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dd29ac62b2a4fb81230d52f368e6b47d = $(`<div id="html_dd29ac62b2a4fb81230d52f368e6b47d" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> JUAN MANUEL DE ROSAS - VILLA URQUIZA<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 16233</div>`)[0];
+                popup_9d30f37d345fafa1476ac9af4dc00aa0.setContent(html_dd29ac62b2a4fb81230d52f368e6b47d);
+            
+        
+
+        circle_marker_04f838741c55c387ee2ea0f9e6e8f6ed.bindPopup(popup_9d30f37d345fafa1476ac9af4dc00aa0)
+        ;
+
+        
+    
+    
+            circle_marker_04f838741c55c387ee2ea0f9e6e8f6ed.bindTooltip(
+                `<div>
+                     JUAN MANUEL DE ROSAS - VILLA URQUIZA (LineaB) - 16233 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2e07b86ea04cff328a8b71e1592568a7 = L.circleMarker(
+                [-34.57517836, -58.43501353],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.579675748460638, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_7d40c73574e76d77ae545a81f403d851 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0fdb816a9ca8f6eeed6183965a987c9b = $(`<div id="html_0fdb816a9ca8f6eeed6183965a987c9b" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> MINISTRO CARRANZA - MIGUEL ABUELO<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 6904</div>`)[0];
+                popup_7d40c73574e76d77ae545a81f403d851.setContent(html_0fdb816a9ca8f6eeed6183965a987c9b);
+            
+        
+
+        circle_marker_2e07b86ea04cff328a8b71e1592568a7.bindPopup(popup_7d40c73574e76d77ae545a81f403d851)
+        ;
+
+        
+    
+    
+            circle_marker_2e07b86ea04cff328a8b71e1592568a7.bindTooltip(
+                `<div>
+                     MINISTRO CARRANZA - MIGUEL ABUELO (LineaD) - 6904 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dc0757a3960cbc354a68ec66a3b9e75f = L.circleMarker(
+                [-34.57779738, -58.4810135],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.814321706514916, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c44a42a23322e2a17d407fa334aecf6d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b88d5ce5b57ce082bfbf63fd60ca2b12 = $(`<div id="html_b88d5ce5b57ce082bfbf63fd60ca2b12" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> ECHEVERRÍA<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 3559</div>`)[0];
+                popup_c44a42a23322e2a17d407fa334aecf6d.setContent(html_b88d5ce5b57ce082bfbf63fd60ca2b12);
+            
+        
+
+        circle_marker_dc0757a3960cbc354a68ec66a3b9e75f.bindPopup(popup_c44a42a23322e2a17d407fa334aecf6d)
+        ;
+
+        
+    
+    
+            circle_marker_dc0757a3960cbc354a68ec66a3b9e75f.bindTooltip(
+                `<div>
+                     ECHEVERRÍA (LineaB) - 3559 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_caeaf15d623a0ead6944349e022f0223 = L.circleMarker(
+                [-34.57842202, -58.42571144],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.744966724769065, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_a30108439f7cf14ea452059d8f9e9180 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a8cecd4c0f636d4614079616f7d7d4f6 = $(`<div id="html_a8cecd4c0f636d4614079616f7d7d4f6" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PALERMO<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 11997</div>`)[0];
+                popup_a30108439f7cf14ea452059d8f9e9180.setContent(html_a8cecd4c0f636d4614079616f7d7d4f6);
+            
+        
+
+        circle_marker_caeaf15d623a0ead6944349e022f0223.bindPopup(popup_a30108439f7cf14ea452059d8f9e9180)
+        ;
+
+        
+    
+    
+            circle_marker_caeaf15d623a0ead6944349e022f0223.bindTooltip(
+                `<div>
+                     PALERMO (LineaD) - 11997 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a4e2d8258093aba971dfc7850ed6da51 = L.circleMarker(
+                [-34.58124885, -58.47424083],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.244562327803033, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_ba23b88bc28cab5ddd10ce50821a43f3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_eb80afb92c234f7994ecc63b5491bf30 = $(`<div id="html_eb80afb92c234f7994ecc63b5491bf30" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> DE LOS INCAS -PQUE CHAS<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 5439</div>`)[0];
+                popup_ba23b88bc28cab5ddd10ce50821a43f3.setContent(html_eb80afb92c234f7994ecc63b5491bf30);
+            
+        
+
+        circle_marker_a4e2d8258093aba971dfc7850ed6da51.bindPopup(popup_ba23b88bc28cab5ddd10ce50821a43f3)
+        ;
+
+        
+    
+    
+            circle_marker_a4e2d8258093aba971dfc7850ed6da51.bindTooltip(
+                `<div>
+                     DE LOS INCAS -PQUE CHAS (LineaB) - 5439 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dd4c2adaab8694ee61bba5f90dfc3c74 = L.circleMarker(
+                [-34.58141119, -58.42119601],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.825724329305933, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_38157af85583a26aef2b6051b3189e6c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7464227ddf93ac1e6aecd34f95f71bdb = $(`<div id="html_7464227ddf93ac1e6aecd34f95f71bdb" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PLAZA ITALIA<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 7979</div>`)[0];
+                popup_38157af85583a26aef2b6051b3189e6c.setContent(html_7464227ddf93ac1e6aecd34f95f71bdb);
+            
+        
+
+        circle_marker_dd4c2adaab8694ee61bba5f90dfc3c74.bindPopup(popup_38157af85583a26aef2b6051b3189e6c)
+        ;
+
+        
+    
+    
+            circle_marker_dd4c2adaab8694ee61bba5f90dfc3c74.bindTooltip(
+                `<div>
+                     PLAZA ITALIA (LineaD) - 7979 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b7fcd1a5660c2975ef0094232cbe5844 = L.circleMarker(
+                [-34.58303634, -58.39101883],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.9356481901080773, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_5b13bc47d25c8feb054b09a55c9dc4eb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8ce908651d98187858e8f4b0d6f57b7e = $(`<div id="html_8ce908651d98187858e8f4b0d6f57b7e" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> FACULTAD DE DERECHO - JULIETA LANTERI<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 4089</div>`)[0];
+                popup_5b13bc47d25c8feb054b09a55c9dc4eb.setContent(html_8ce908651d98187858e8f4b0d6f57b7e);
+            
+        
+
+        circle_marker_b7fcd1a5660c2975ef0094232cbe5844.bindPopup(popup_5b13bc47d25c8feb054b09a55c9dc4eb)
+        ;
+
+        
+    
+    
+            circle_marker_b7fcd1a5660c2975ef0094232cbe5844.bindTooltip(
+                `<div>
+                     FACULTAD DE DERECHO - JULIETA LANTERI (LineaH) - 4089 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aff04609435714f1ea131b62fedccc0e = L.circleMarker(
+                [-34.58409462, -58.4662272],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.7628995111351387, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_77490819735567bdf7a0a21df1acf415 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c72d2b28fc331546d53d6580d9ea2eef = $(`<div id="html_c72d2b28fc331546d53d6580d9ea2eef" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> TRONADOR - VILLA ORTÚZAR<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 3334</div>`)[0];
+                popup_77490819735567bdf7a0a21df1acf415.setContent(html_c72d2b28fc331546d53d6580d9ea2eef);
+            
+        
+
+        circle_marker_aff04609435714f1ea131b62fedccc0e.bindPopup(popup_77490819735567bdf7a0a21df1acf415)
+        ;
+
+        
+    
+    
+            circle_marker_aff04609435714f1ea131b62fedccc0e.bindTooltip(
+                `<div>
+                     TRONADOR - VILLA ORTÚZAR (LineaB) - 3334 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_939bb0cec02f95899a3afd12527036a7 = L.circleMarker(
+                [-34.58515594, -58.41595542],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.605073164332291, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_efc60a7d751c6ec8590bdd5b4fb10e57 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_df0d7fb9efc48d2e5aca37dcd8367f54 = $(`<div id="html_df0d7fb9efc48d2e5aca37dcd8367f54" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> R.SCALABRINI ORTIZ<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 7015</div>`)[0];
+                popup_efc60a7d751c6ec8590bdd5b4fb10e57.setContent(html_df0d7fb9efc48d2e5aca37dcd8367f54);
+            
+        
+
+        circle_marker_939bb0cec02f95899a3afd12527036a7.bindPopup(popup_efc60a7d751c6ec8590bdd5b4fb10e57)
+        ;
+
+        
+    
+    
+            circle_marker_939bb0cec02f95899a3afd12527036a7.bindTooltip(
+                `<div>
+                     R.SCALABRINI ORTIZ (LineaD) - 7015 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4941718c9abf0bfbf2cd7a3659eced1f = L.circleMarker(
+                [-34.58719785, -58.45502929],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.770214402721605, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c088428b89202d3d11ac65c80c020277 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_90eb70ac11eedb1f5e769ed6e8aa8a5f = $(`<div id="html_90eb70ac11eedb1f5e769ed6e8aa8a5f" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> FEDERICO LACROZE<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 16478</div>`)[0];
+                popup_c088428b89202d3d11ac65c80c020277.setContent(html_90eb70ac11eedb1f5e769ed6e8aa8a5f);
+            
+        
+
+        circle_marker_4941718c9abf0bfbf2cd7a3659eced1f.bindPopup(popup_c088428b89202d3d11ac65c80c020277)
+        ;
+
+        
+    
+    
+            circle_marker_4941718c9abf0bfbf2cd7a3659eced1f.bindTooltip(
+                `<div>
+                     FEDERICO LACROZE (LineaB) - 16478 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_07366d3f5ea28a264c4b87919f86d77a = L.circleMarker(
+                [-34.58746155, -58.39721558],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.438704718360494, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_585747d370bd4c3b2c3eabc67c10136e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2a3b6114a60c588d5e29f07f32d556c1 = $(`<div id="html_2a3b6114a60c588d5e29f07f32d556c1" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> LAS HERAS<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 6288</div>`)[0];
+                popup_585747d370bd4c3b2c3eabc67c10136e.setContent(html_2a3b6114a60c588d5e29f07f32d556c1);
+            
+        
+
+        circle_marker_07366d3f5ea28a264c4b87919f86d77a.bindPopup(popup_585747d370bd4c3b2c3eabc67c10136e)
+        ;
+
+        
+    
+    
+            circle_marker_07366d3f5ea28a264c4b87919f86d77a.bindTooltip(
+                `<div>
+                     LAS HERAS (LineaH) - 6288 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_771580e4d9af04eaacc1927ed7321b0d = L.circleMarker(
+                [-34.58823711, -58.4112939],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.146586137305105, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_26fb29f26df428f60e17c9be2010a964 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_74561a44dac77f100da39af053a0923e = $(`<div id="html_74561a44dac77f100da39af053a0923e" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> BULNES<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 9382</div>`)[0];
+                popup_26fb29f26df428f60e17c9be2010a964.setContent(html_74561a44dac77f100da39af053a0923e);
+            
+        
+
+        circle_marker_771580e4d9af04eaacc1927ed7321b0d.bindPopup(popup_26fb29f26df428f60e17c9be2010a964)
+        ;
+
+        
+    
+    
+            circle_marker_771580e4d9af04eaacc1927ed7321b0d.bindTooltip(
+                `<div>
+                     BULNES (LineaD) - 9382 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c9590b836e8200faf39f6b3bdcc485c0 = L.circleMarker(
+                [-34.59119381, -58.37401822],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.531456062298943, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_5c3c107fafa55b7f6b2605f750b5b71b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cdfdd55a34440dbdb54edadaf2070051 = $(`<div id="html_cdfdd55a34440dbdb54edadaf2070051" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> RETIRO<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 19805</div>`)[0];
+                popup_5c3c107fafa55b7f6b2605f750b5b71b.setContent(html_cdfdd55a34440dbdb54edadaf2070051);
+            
+        
+
+        circle_marker_c9590b836e8200faf39f6b3bdcc485c0.bindPopup(popup_5c3c107fafa55b7f6b2605f750b5b71b)
+        ;
+
+        
+    
+    
+            circle_marker_c9590b836e8200faf39f6b3bdcc485c0.bindTooltip(
+                `<div>
+                     RETIRO (LineaC) - 19805 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_909fd2b5efcac4f3bc5b547baa151400 = L.circleMarker(
+                [-34.59162784, -58.40716132],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.470765772699045, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_0139192c6c39c4584cfba5bca3415421 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_90c62191458aae1e6a92ed46945e72e3 = $(`<div id="html_90c62191458aae1e6a92ed46945e72e3" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> AGUERO<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 6428</div>`)[0];
+                popup_0139192c6c39c4584cfba5bca3415421.setContent(html_90c62191458aae1e6a92ed46945e72e3);
+            
+        
+
+        circle_marker_909fd2b5efcac4f3bc5b547baa151400.bindPopup(popup_0139192c6c39c4584cfba5bca3415421)
+        ;
+
+        
+    
+    
+            circle_marker_909fd2b5efcac4f3bc5b547baa151400.bindTooltip(
+                `<div>
+                     AGUERO (LineaD) - 6428 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_80a6b0af0e5fe3af926cf08dd43c6d64 = L.circleMarker(
+                [-34.59171815, -58.44757309],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.476609073124624, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_65af2768d51ed562da7a4d67c31e36a1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f2e29fc8cf637c0fedee9e561a969d6 = $(`<div id="html_2f2e29fc8cf637c0fedee9e561a969d6" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> DORREGO<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 6454</div>`)[0];
+                popup_65af2768d51ed562da7a4d67c31e36a1.setContent(html_2f2e29fc8cf637c0fedee9e561a969d6);
+            
+        
+
+        circle_marker_80a6b0af0e5fe3af926cf08dd43c6d64.bindPopup(popup_65af2768d51ed562da7a4d67c31e36a1)
+        ;
+
+        
+    
+    
+            circle_marker_80a6b0af0e5fe3af926cf08dd43c6d64.bindTooltip(
+                `<div>
+                     DORREGO (LineaB) - 6454 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8bb8f110e5389b08bf58f6b4d54ded5c = L.circleMarker(
+                [-34.59211436, -58.37584984],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.754553825382867, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_e255425e1e75c1fb95b2a131fa46d0dd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6a51fed3689360a6bd4fcf09760c46b7 = $(`<div id="html_6a51fed3689360a6bd4fcf09760c46b7" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> RETIRO<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 3298</div>`)[0];
+                popup_e255425e1e75c1fb95b2a131fa46d0dd.setContent(html_6a51fed3689360a6bd4fcf09760c46b7);
+            
+        
+
+        circle_marker_8bb8f110e5389b08bf58f6b4d54ded5c.bindPopup(popup_e255425e1e75c1fb95b2a131fa46d0dd)
+        ;
+
+        
+    
+    
+            circle_marker_8bb8f110e5389b08bf58f6b4d54ded5c.bindTooltip(
+                `<div>
+                     RETIRO (LineaE) - 3298 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ee044e2b771c84f121587ad79a33de1a = L.circleMarker(
+                [-34.59442572, -58.40239534],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.093560656639923, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_5c95bf2d75ffbf1439ca25c3cda5d4d1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b5d1a46fc1ea9b52e1114785609b800a = $(`<div id="html_b5d1a46fc1ea9b52e1114785609b800a" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PUEYRREDON<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 4779</div>`)[0];
+                popup_5c95bf2d75ffbf1439ca25c3cda5d4d1.setContent(html_b5d1a46fc1ea9b52e1114785609b800a);
+            
+        
+
+        circle_marker_ee044e2b771c84f121587ad79a33de1a.bindPopup(popup_5c95bf2d75ffbf1439ca25c3cda5d4d1)
+        ;
+
+        
+    
+    
+            circle_marker_ee044e2b771c84f121587ad79a33de1a.bindTooltip(
+                `<div>
+                     PUEYRREDON (LineaD) - 4779 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f85f3fa50ac145a6799c352020036ded = L.circleMarker(
+                [-34.5945254, -58.40237618],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.5881800176179635, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_0f10d0c04c847d612320f72373313e22 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5cccccab96e2d0292b597107822b638a = $(`<div id="html_5cccccab96e2d0292b597107822b638a" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> SANTA FE - CARLOS JAUREGUI<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 6941</div>`)[0];
+                popup_0f10d0c04c847d612320f72373313e22.setContent(html_5cccccab96e2d0292b597107822b638a);
+            
+        
+
+        circle_marker_f85f3fa50ac145a6799c352020036ded.bindPopup(popup_0f10d0c04c847d612320f72373313e22)
+        ;
+
+        
+    
+    
+            circle_marker_f85f3fa50ac145a6799c352020036ded.bindTooltip(
+                `<div>
+                     SANTA FE - CARLOS JAUREGUI (LineaH) - 6941 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_14bcb18b7198c7f3e7a6084cf9f49481 = L.circleMarker(
+                [-34.5950574, -58.37781905],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.7266621299802245, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_6406b92a064e2fd661d0bfbe2b313a0f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_30a8c4dc9910e26100a1be68e75dbbab = $(`<div id="html_30a8c4dc9910e26100a1be68e75dbbab" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> SAN MARTIN<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 3176</div>`)[0];
+                popup_6406b92a064e2fd661d0bfbe2b313a0f.setContent(html_30a8c4dc9910e26100a1be68e75dbbab);
+            
+        
+
+        circle_marker_14bcb18b7198c7f3e7a6084cf9f49481.bindPopup(popup_6406b92a064e2fd661d0bfbe2b313a0f)
+        ;
+
+        
+    
+    
+            circle_marker_14bcb18b7198c7f3e7a6084cf9f49481.bindTooltip(
+                `<div>
+                     SAN MARTIN (LineaC) - 3176 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83755c216864e1fc73a060bd0d9664c6 = L.circleMarker(
+                [-34.59659682, -58.37170033],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.5953514322111397, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_92acfdda69020776c81a88285a00f9a0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f8b6d5c8ac47cf7f84be795eb48baf80 = $(`<div id="html_f8b6d5c8ac47cf7f84be795eb48baf80" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CATALINAS<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 2602</div>`)[0];
+                popup_92acfdda69020776c81a88285a00f9a0.setContent(html_f8b6d5c8ac47cf7f84be795eb48baf80);
+            
+        
+
+        circle_marker_83755c216864e1fc73a060bd0d9664c6.bindPopup(popup_92acfdda69020776c81a88285a00f9a0)
+        ;
+
+        
+    
+    
+            circle_marker_83755c216864e1fc73a060bd0d9664c6.bindTooltip(
+                `<div>
+                     CATALINAS (LineaE) - 2602 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c0ce2161d9efe817f41cd748f6fc9a41 = L.circleMarker(
+                [-34.59845511, -58.4037215],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.028950797782308, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_e59e121af7b5641d720d38ebb567d1a8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_22b423968bef3e894bc03c0e2721ec20 = $(`<div id="html_22b423968bef3e894bc03c0e2721ec20" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CÓRDOBA<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 4497</div>`)[0];
+                popup_e59e121af7b5641d720d38ebb567d1a8.setContent(html_22b423968bef3e894bc03c0e2721ec20);
+            
+        
+
+        circle_marker_c0ce2161d9efe817f41cd748f6fc9a41.bindPopup(popup_e59e121af7b5641d720d38ebb567d1a8)
+        ;
+
+        
+    
+    
+            circle_marker_c0ce2161d9efe817f41cd748f6fc9a41.bindTooltip(
+                `<div>
+                     CÓRDOBA (LineaH) - 4497 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_92ed7338d624da701c5ce3e189e05a4f = L.circleMarker(
+                [-34.59896736, -58.4397715],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.381009932933496, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_1f48731eeecf463032b5ac64e363f992 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_75d992b27935a44f55d6029d55dd88cb = $(`<div id="html_75d992b27935a44f55d6029d55dd88cb" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> MALABIA - OSVALDO PUGLIESE<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 10406</div>`)[0];
+                popup_1f48731eeecf463032b5ac64e363f992.setContent(html_75d992b27935a44f55d6029d55dd88cb);
+            
+        
+
+        circle_marker_92ed7338d624da701c5ce3e189e05a4f.bindPopup(popup_1f48731eeecf463032b5ac64e363f992)
+        ;
+
+        
+    
+    
+            circle_marker_92ed7338d624da701c5ce3e189e05a4f.bindTooltip(
+                `<div>
+                     MALABIA - OSVALDO PUGLIESE (LineaB) - 10406 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6e85cf0c48a8a6c5e2d74b23e6ffa087 = L.circleMarker(
+                [-34.59963955, -58.39312518],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.871175083514629, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_41a92839746c3c2abb27c473fe118c16 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e494d77396a63ad704d9a45b265ab2c2 = $(`<div id="html_e494d77396a63ad704d9a45b265ab2c2" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CALLAO<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 8178</div>`)[0];
+                popup_41a92839746c3c2abb27c473fe118c16.setContent(html_e494d77396a63ad704d9a45b265ab2c2);
+            
+        
+
+        circle_marker_6e85cf0c48a8a6c5e2d74b23e6ffa087.bindPopup(popup_41a92839746c3c2abb27c473fe118c16)
+        ;
+
+        
+    
+    
+            circle_marker_6e85cf0c48a8a6c5e2d74b23e6ffa087.bindTooltip(
+                `<div>
+                     CALLAO (LineaD) - 8178 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_585653a771f8c2d0f5a55b1f616fdb3e = L.circleMarker(
+                [-34.59975708, -58.39792376],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.384992226717571, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_cbc30724401ae957db4124a9fa5dbe78 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1f061669ff51c85f8cf6461f6d0155b3 = $(`<div id="html_1f061669ff51c85f8cf6461f6d0155b3" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> FACULTAD DE MEDICINA<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 10424</div>`)[0];
+                popup_cbc30724401ae957db4124a9fa5dbe78.setContent(html_1f061669ff51c85f8cf6461f6d0155b3);
+            
+        
+
+        circle_marker_585653a771f8c2d0f5a55b1f616fdb3e.bindPopup(popup_cbc30724401ae957db4124a9fa5dbe78)
+        ;
+
+        
+    
+    
+            circle_marker_585653a771f8c2d0f5a55b1f616fdb3e.bindTooltip(
+                `<div>
+                     FACULTAD DE MEDICINA (LineaD) - 10424 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_05445cb40622748bf0cb7843c147f671 = L.circleMarker(
+                [-34.60158717, -58.38514236],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.54977700998215, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c127276ee51317d4bddccc5f1dbd0907 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_91a20a761162d3c812fa042dd05466d6 = $(`<div id="html_91a20a761162d3c812fa042dd05466d6" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> TRIBUNALES - TEATRO COLÓN<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 6773</div>`)[0];
+                popup_c127276ee51317d4bddccc5f1dbd0907.setContent(html_91a20a761162d3c812fa042dd05466d6);
+            
+        
+
+        circle_marker_05445cb40622748bf0cb7843c147f671.bindPopup(popup_c127276ee51317d4bddccc5f1dbd0907)
+        ;
+
+        
+    
+    
+            circle_marker_05445cb40622748bf0cb7843c147f671.bindTooltip(
+                `<div>
+                     TRIBUNALES - TEATRO COLÓN (LineaD) - 6773 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c7c727caaea1ab8fc54866ceeb278b9f = L.circleMarker(
+                [-34.60176992, -58.37815578],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.9458700910567295, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_538174919b3cb57605e93a91217cb7b9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5f99bf0ab9846bad2bda9073d9f2cdf7 = $(`<div id="html_5f99bf0ab9846bad2bda9073d9f2cdf7" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> LAVALLE<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 4134</div>`)[0];
+                popup_538174919b3cb57605e93a91217cb7b9.setContent(html_5f99bf0ab9846bad2bda9073d9f2cdf7);
+            
+        
+
+        circle_marker_c7c727caaea1ab8fc54866ceeb278b9f.bindPopup(popup_538174919b3cb57605e93a91217cb7b9)
+        ;
+
+        
+    
+    
+            circle_marker_c7c727caaea1ab8fc54866ceeb278b9f.bindTooltip(
+                `<div>
+                     LAVALLE (LineaC) - 4134 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e84c8e332000f5b7873bca40883cb4bd = L.circleMarker(
+                [-34.60216223, -58.43127386],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.926299093611248, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_19c424d1253c3ceef4346ab09d26896b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3122e421c288c2a6d3785bffe5bb67ed = $(`<div id="html_3122e421c288c2a6d3785bffe5bb67ed" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> ANGEL GALLARDO<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 8419</div>`)[0];
+                popup_19c424d1253c3ceef4346ab09d26896b.setContent(html_3122e421c288c2a6d3785bffe5bb67ed);
+            
+        
+
+        circle_marker_e84c8e332000f5b7873bca40883cb4bd.bindPopup(popup_19c424d1253c3ceef4346ab09d26896b)
+        ;
+
+        
+    
+    
+            circle_marker_e84c8e332000f5b7873bca40883cb4bd.bindTooltip(
+                `<div>
+                     ANGEL GALLARDO (LineaB) - 8419 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a6750fd9ac878abe7734da394123d5f5 = L.circleMarker(
+                [-34.6029895, -58.36992985],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.536108970135248, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_14248e8acf7e439429ca51106d42bb71 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2c1c1d923b47328a957fde5d5ca31632 = $(`<div id="html_2c1c1d923b47328a957fde5d5ca31632" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> LEANDRO N ALEM<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 11084</div>`)[0];
+                popup_14248e8acf7e439429ca51106d42bb71.setContent(html_2c1c1d923b47328a957fde5d5ca31632);
+            
+        
+
+        circle_marker_a6750fd9ac878abe7734da394123d5f5.bindPopup(popup_14248e8acf7e439429ca51106d42bb71)
+        ;
+
+        
+    
+    
+            circle_marker_a6750fd9ac878abe7734da394123d5f5.bindTooltip(
+                `<div>
+                     LEANDRO N ALEM (LineaB) - 11084 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e564f26df72de231c6726b31a00f56b9 = L.circleMarker(
+                [-34.60301391, -58.3704125],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.933868613893205, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_68ade7bf3a3f75d80519f712fd8a02e0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_98bd56907c28f4a792aded131e048a87 = $(`<div id="html_98bd56907c28f4a792aded131e048a87" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CORREO CENTRAL<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 4082</div>`)[0];
+                popup_68ade7bf3a3f75d80519f712fd8a02e0.setContent(html_98bd56907c28f4a792aded131e048a87);
+            
+        
+
+        circle_marker_e564f26df72de231c6726b31a00f56b9.bindPopup(popup_68ade7bf3a3f75d80519f712fd8a02e0)
+        ;
+
+        
+    
+    
+            circle_marker_e564f26df72de231c6726b31a00f56b9.bindTooltip(
+                `<div>
+                     CORREO CENTRAL (LineaE) - 4082 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_10a696b7c58385025e20cc7d2112595d = L.circleMarker(
+                [-34.6031649, -58.42096247],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.256768150716969, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_ab77f31cc6b33fbf8be8a62c26a0eae0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c2cd40674161cd64e32b3a4fb9a7140e = $(`<div id="html_c2cd40674161cd64e32b3a4fb9a7140e" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> ALMAGRO - MEDRANO<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 9863</div>`)[0];
+                popup_ab77f31cc6b33fbf8be8a62c26a0eae0.setContent(html_c2cd40674161cd64e32b3a4fb9a7140e);
+            
+        
+
+        circle_marker_10a696b7c58385025e20cc7d2112595d.bindPopup(popup_ab77f31cc6b33fbf8be8a62c26a0eae0)
+        ;
+
+        
+    
+    
+            circle_marker_10a696b7c58385025e20cc7d2112595d.bindTooltip(
+                `<div>
+                     ALMAGRO - MEDRANO (LineaB) - 9863 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_555a0e059342d251f68f9240dac8b4db = L.circleMarker(
+                [-34.60329729, -58.37507152],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.7586575645601386, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_145e82c02b82bad50cf56c5d191abd83 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_07dc175d4e4ed270614470b5de34f42b = $(`<div id="html_07dc175d4e4ed270614470b5de34f42b" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> FLORIDA<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 7686</div>`)[0];
+                popup_145e82c02b82bad50cf56c5d191abd83.setContent(html_07dc175d4e4ed270614470b5de34f42b);
+            
+        
+
+        circle_marker_555a0e059342d251f68f9240dac8b4db.bindPopup(popup_145e82c02b82bad50cf56c5d191abd83)
+        ;
+
+        
+    
+    
+            circle_marker_555a0e059342d251f68f9240dac8b4db.bindTooltip(
+                `<div>
+                     FLORIDA (LineaB) - 7686 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bc3a43f251448275f8fe30b7e9b1f89c = L.circleMarker(
+                [-34.60363711, -58.38071485],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.74520691485679, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_396a0e04dacbae1b36039ba036d0bfc3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6d0bcb980e129b3bbc551c8054afd069 = $(`<div id="html_6d0bcb980e129b3bbc551c8054afd069" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> C. PELLEGRINI<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 11998</div>`)[0];
+                popup_396a0e04dacbae1b36039ba036d0bfc3.setContent(html_6d0bcb980e129b3bbc551c8054afd069);
+            
+        
+
+        circle_marker_bc3a43f251448275f8fe30b7e9b1f89c.bindPopup(popup_396a0e04dacbae1b36039ba036d0bfc3)
+        ;
+
+        
+    
+    
+            circle_marker_bc3a43f251448275f8fe30b7e9b1f89c.bindTooltip(
+                `<div>
+                     C. PELLEGRINI (LineaB) - 11998 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f91d6f2252aaf57267dc09d8c60518b7 = L.circleMarker(
+                [-34.60407952, -58.4117626],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.267981809459229, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_1cd36ff88562cc9d61f851bea7d2e6cc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_17f3e93c7c262dc1853e194c242a6bc3 = $(`<div id="html_17f3e93c7c262dc1853e194c242a6bc3" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CARLOS GARDEL<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 9912</div>`)[0];
+                popup_1cd36ff88562cc9d61f851bea7d2e6cc.setContent(html_17f3e93c7c262dc1853e194c242a6bc3);
+            
+        
+
+        circle_marker_f91d6f2252aaf57267dc09d8c60518b7.bindPopup(popup_1cd36ff88562cc9d61f851bea7d2e6cc)
+        ;
+
+        
+    
+    
+            circle_marker_f91d6f2252aaf57267dc09d8c60518b7.bindTooltip(
+                `<div>
+                     CARLOS GARDEL (LineaB) - 9912 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_51c436fb5a4f81e4c3db4a6cda3057c7 = L.circleMarker(
+                [-34.60409355, -58.38729613],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.732949757904628, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_002b56be5b182d7dd15f5a032d64bb8f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d40042cd43c42f25e5cc17b1b4b6b668 = $(`<div id="html_d40042cd43c42f25e5cc17b1b4b6b668" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> URUGUAY<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 7574</div>`)[0];
+                popup_002b56be5b182d7dd15f5a032d64bb8f.setContent(html_d40042cd43c42f25e5cc17b1b4b6b668);
+            
+        
+
+        circle_marker_51c436fb5a4f81e4c3db4a6cda3057c7.bindPopup(popup_002b56be5b182d7dd15f5a032d64bb8f)
+        ;
+
+        
+    
+    
+            circle_marker_51c436fb5a4f81e4c3db4a6cda3057c7.bindTooltip(
+                `<div>
+                     URUGUAY (LineaB) - 7574 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_704f7d0f0598f7cce145e0715e9f2cad = L.circleMarker(
+                [-34.6042452, -58.38057434],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.699715696567247, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_87c0f570679f15e75582a8d304627032 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d67999abca17a1851c0fd18ac0cc7f70 = $(`<div id="html_d67999abca17a1851c0fd18ac0cc7f70" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> 9 DE JULIO<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 3058</div>`)[0];
+                popup_87c0f570679f15e75582a8d304627032.setContent(html_d67999abca17a1851c0fd18ac0cc7f70);
+            
+        
+
+        circle_marker_704f7d0f0598f7cce145e0715e9f2cad.bindPopup(popup_87c0f570679f15e75582a8d304627032)
+        ;
+
+        
+    
+    
+            circle_marker_704f7d0f0598f7cce145e0715e9f2cad.bindTooltip(
+                `<div>
+                     9 DE JULIO (LineaD) - 3058 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b11b1d59910f8e1eea701dc92768926b = L.circleMarker(
+                [-34.60441954, -58.39231424],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.124597040571254, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_f9a2b1d9db78f87e009babd548c361ab = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2ea7c27a759037fe393721968616700f = $(`<div id="html_2ea7c27a759037fe393721968616700f" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CALLAO - MAESTRO ALFREDO BRAVO<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 9286</div>`)[0];
+                popup_f9a2b1d9db78f87e009babd548c361ab.setContent(html_2ea7c27a759037fe393721968616700f);
+            
+        
+
+        circle_marker_b11b1d59910f8e1eea701dc92768926b.bindPopup(popup_f9a2b1d9db78f87e009babd548c361ab)
+        ;
+
+        
+    
+    
+            circle_marker_b11b1d59910f8e1eea701dc92768926b.bindTooltip(
+                `<div>
+                     CALLAO - MAESTRO ALFREDO BRAVO (LineaB) - 9286 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4e63a8f0b48699bbe138bd9f64c66634 = L.circleMarker(
+                [-34.6044902, -58.40545033],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.8120225598117137, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_7846efae68b28a61fbc07c80e9681569 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b6674be31f6162b1528c128822be1c73 = $(`<div id="html_b6674be31f6162b1528c128822be1c73" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CORRIENTES<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 3549</div>`)[0];
+                popup_7846efae68b28a61fbc07c80e9681569.setContent(html_b6674be31f6162b1528c128822be1c73);
+            
+        
+
+        circle_marker_4e63a8f0b48699bbe138bd9f64c66634.bindPopup(popup_7846efae68b28a61fbc07c80e9681569)
+        ;
+
+        
+    
+    
+            circle_marker_4e63a8f0b48699bbe138bd9f64c66634.bindTooltip(
+                `<div>
+                     CORRIENTES (LineaH) - 3549 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7ee47ff0e1f79d35cf099f574a348de2 = L.circleMarker(
+                [-34.60458106, -58.40539944],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.651850876352135, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_e6b2ca29bf753bb15f44a7d5a7b865f5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_874f73392b9b4ee5bc3c0fcc063b4a00 = $(`<div id="html_874f73392b9b4ee5bc3c0fcc063b4a00" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PUEYRREDON<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 7220</div>`)[0];
+                popup_e6b2ca29bf753bb15f44a7d5a7b865f5.setContent(html_874f73392b9b4ee5bc3c0fcc063b4a00);
+            
+        
+
+        circle_marker_7ee47ff0e1f79d35cf099f574a348de2.bindPopup(popup_e6b2ca29bf753bb15f44a7d5a7b865f5)
+        ;
+
+        
+    
+    
+            circle_marker_7ee47ff0e1f79d35cf099f574a348de2.bindTooltip(
+                `<div>
+                     PUEYRREDON (LineaB) - 7220 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_30d786c6cbbab577b799a4e0fdfcd68d = L.circleMarker(
+                [-34.60464297, -58.39947426],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0000", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.475710860286087, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c4300f4acecc3c12d66ee0abc0637d28 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_98d609a85a35438a3385e2db16cda82d = $(`<div id="html_98d609a85a35438a3385e2db16cda82d" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PASTEUR - AMIA<br><b>Línea:</b> LineaB<br><b>Flujo promedio diario:</b> 6450</div>`)[0];
+                popup_c4300f4acecc3c12d66ee0abc0637d28.setContent(html_98d609a85a35438a3385e2db16cda82d);
+            
+        
+
+        circle_marker_30d786c6cbbab577b799a4e0fdfcd68d.bindPopup(popup_c4300f4acecc3c12d66ee0abc0637d28)
+        ;
+
+        
+    
+    
+            circle_marker_30d786c6cbbab577b799a4e0fdfcd68d.bindTooltip(
+                `<div>
+                     PASTEUR - AMIA (LineaB) - 6450 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eb6b5b8c5e1e1e8b1ea1aff336274b63 = L.circleMarker(
+                [-34.60484374, -58.37952998],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.7364075215038035, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_b048d9d6d69f4096755ffcff7a195269 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_19fa5b9f96684727d672cea1592c822f = $(`<div id="html_19fa5b9f96684727d672cea1592c822f" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> DIAGONAL NORTE<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 3219</div>`)[0];
+                popup_b048d9d6d69f4096755ffcff7a195269.setContent(html_19fa5b9f96684727d672cea1592c822f);
+            
+        
+
+        circle_marker_eb6b5b8c5e1e1e8b1ea1aff336274b63.bindPopup(popup_b048d9d6d69f4096755ffcff7a195269)
+        ;
+
+        
+    
+    
+            circle_marker_eb6b5b8c5e1e1e8b1ea1aff336274b63.bindTooltip(
+                `<div>
+                     DIAGONAL NORTE (LineaC) - 3219 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2b4902ac9cf1c6d3dc8ebcd131353083 = L.circleMarker(
+                [-34.60780234, -58.37395581],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#228B22", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.812481750628071, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_6cd0e6e8ea9df5b67b0dc7013cf3ab49 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_df7063405492e0eee18929fada09d612 = $(`<div id="html_df7063405492e0eee18929fada09d612" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CATEDRAL<br><b>Línea:</b> LineaD<br><b>Flujo promedio diario:</b> 12292</div>`)[0];
+                popup_6cd0e6e8ea9df5b67b0dc7013cf3ab49.setContent(html_df7063405492e0eee18929fada09d612);
+            
+        
+
+        circle_marker_2b4902ac9cf1c6d3dc8ebcd131353083.bindPopup(popup_6cd0e6e8ea9df5b67b0dc7013cf3ab49)
+        ;
+
+        
+    
+    
+            circle_marker_2b4902ac9cf1c6d3dc8ebcd131353083.bindTooltip(
+                `<div>
+                     CATEDRAL (LineaD) - 12292 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3a05e0543af74c02ab9d916b8d5eb20c = L.circleMarker(
+                [-34.60855907, -58.37426773],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.33075412792941, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_2109698222a02a65de645879b719b4c1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6d6945c15e36a12a7a24a2f21f583cd5 = $(`<div id="html_6d6945c15e36a12a7a24a2f21f583cd5" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PERU<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 5816</div>`)[0];
+                popup_2109698222a02a65de645879b719b4c1.setContent(html_6d6945c15e36a12a7a24a2f21f583cd5);
+            
+        
+
+        circle_marker_3a05e0543af74c02ab9d916b8d5eb20c.bindPopup(popup_2109698222a02a65de645879b719b4c1)
+        ;
+
+        
+    
+    
+            circle_marker_3a05e0543af74c02ab9d916b8d5eb20c.bindTooltip(
+                `<div>
+                     PERU (LineaA) - 5816 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d4c90d30cc88a5f50b007391fd2d5e87 = L.circleMarker(
+                [-34.60881031, -58.3709685],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.251616178362015, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_2ee98d913a81a8525baf97305e2ad2b9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bf5f2674906efb982375a095099e4e9c = $(`<div id="html_bf5f2674906efb982375a095099e4e9c" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PLAZA DE MAYO<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 9841</div>`)[0];
+                popup_2ee98d913a81a8525baf97305e2ad2b9.setContent(html_bf5f2674906efb982375a095099e4e9c);
+            
+        
+
+        circle_marker_d4c90d30cc88a5f50b007391fd2d5e87.bindPopup(popup_2ee98d913a81a8525baf97305e2ad2b9)
+        ;
+
+        
+    
+    
+            circle_marker_d4c90d30cc88a5f50b007391fd2d5e87.bindTooltip(
+                `<div>
+                     PLAZA DE MAYO (LineaA) - 9841 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_75a13cfdeb749686b4ca7a1b3a074cef = L.circleMarker(
+                [-34.60888172, -58.37908515],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.789920721773597, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c42aec223ccb049324dcdb3764bb09ef = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3958350339fde94138ab28b86081c02b = $(`<div id="html_3958350339fde94138ab28b86081c02b" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PIEDRAS<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 3452</div>`)[0];
+                popup_c42aec223ccb049324dcdb3764bb09ef.setContent(html_3958350339fde94138ab28b86081c02b);
+            
+        
+
+        circle_marker_75a13cfdeb749686b4ca7a1b3a074cef.bindPopup(popup_c42aec223ccb049324dcdb3764bb09ef)
+        ;
+
+        
+    
+    
+            circle_marker_75a13cfdeb749686b4ca7a1b3a074cef.bindTooltip(
+                `<div>
+                     PIEDRAS (LineaA) - 3452 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a6e51fa9ed9872fe2bdd271536b89cce = L.circleMarker(
+                [-34.60893524, -58.40603638],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.207167614950255, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_aabc527729dc6bd123daec40cb30fdbb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c9abd4a64f54434d3a7428d777097667 = $(`<div id="html_c9abd4a64f54434d3a7428d777097667" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> ONCE - 30 DE DICIEMBRE<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 9647</div>`)[0];
+                popup_aabc527729dc6bd123daec40cb30fdbb.setContent(html_c9abd4a64f54434d3a7428d777097667);
+            
+        
+
+        circle_marker_a6e51fa9ed9872fe2bdd271536b89cce.bindPopup(popup_aabc527729dc6bd123daec40cb30fdbb)
+        ;
+
+        
+    
+    
+            circle_marker_a6e51fa9ed9872fe2bdd271536b89cce.bindTooltip(
+                `<div>
+                     ONCE - 30 DE DICIEMBRE (LineaH) - 9647 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d959aeafda509dbe4cdc5985800bf940 = L.circleMarker(
+                [-34.60898331, -58.38061072],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.66818374659379, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_77f1d82d5cc5f5a2d284bf83f099e620 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a55456189291060deb2320594f1e2643 = $(`<div id="html_a55456189291060deb2320594f1e2643" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> AV. DE MAYO<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 2920</div>`)[0];
+                popup_77f1d82d5cc5f5a2d284bf83f099e620.setContent(html_a55456189291060deb2320594f1e2643);
+            
+        
+
+        circle_marker_d959aeafda509dbe4cdc5985800bf940.bindPopup(popup_77f1d82d5cc5f5a2d284bf83f099e620)
+        ;
+
+        
+    
+    
+            circle_marker_d959aeafda509dbe4cdc5985800bf940.bindTooltip(
+                `<div>
+                     AV. DE MAYO (LineaC) - 2920 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d3ffa3f2540b62d51ed07452ec3dc2ba = L.circleMarker(
+                [-34.60909981, -58.3822324],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.05133493164387, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_822461f31cf9a9631984f3d22a0a173c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ddfd3227dd8ea28ec861aa4baf4f4fb5 = $(`<div id="html_ddfd3227dd8ea28ec861aa4baf4f4fb5" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> LIMA<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 4595</div>`)[0];
+                popup_822461f31cf9a9631984f3d22a0a173c.setContent(html_ddfd3227dd8ea28ec861aa4baf4f4fb5);
+            
+        
+
+        circle_marker_d3ffa3f2540b62d51ed07452ec3dc2ba.bindPopup(popup_822461f31cf9a9631984f3d22a0a173c)
+        ;
+
+        
+    
+    
+            circle_marker_d3ffa3f2540b62d51ed07452ec3dc2ba.bindTooltip(
+                `<div>
+                     LIMA (LineaA) - 4595 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b13ca59d346ca576a9e144db40c003f4 = L.circleMarker(
+                [-34.60922568, -58.39266882],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.797208128868746, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_f172664981fcafcc48d190cf037441a5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3506d01b6b665e76ef6c80887a45f635 = $(`<div id="html_3506d01b6b665e76ef6c80887a45f635" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CONGRESO - PDTE DR RAÚL R ALFONSÍN<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 7855</div>`)[0];
+                popup_f172664981fcafcc48d190cf037441a5.setContent(html_3506d01b6b665e76ef6c80887a45f635);
+            
+        
+
+        circle_marker_b13ca59d346ca576a9e144db40c003f4.bindPopup(popup_f172664981fcafcc48d190cf037441a5)
+        ;
+
+        
+    
+    
+            circle_marker_b13ca59d346ca576a9e144db40c003f4.bindTooltip(
+                `<div>
+                     CONGRESO - PDTE DR RAÚL R ALFONSÍN (LineaA) - 7855 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_50dd6f0f952051900d2ca07a79e730d1 = L.circleMarker(
+                [-34.60924243, -58.37368422],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.40723947589003, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_5ece550b7e901115a226a3ce4a297203 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6a20fa23aa2036a576938be120956683 = $(`<div id="html_6a20fa23aa2036a576938be120956683" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> BOLIVAR<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 6150</div>`)[0];
+                popup_5ece550b7e901115a226a3ce4a297203.setContent(html_6a20fa23aa2036a576938be120956683);
+            
+        
+
+        circle_marker_50dd6f0f952051900d2ca07a79e730d1.bindPopup(popup_5ece550b7e901115a226a3ce4a297203)
+        ;
+
+        
+    
+    
+            circle_marker_50dd6f0f952051900d2ca07a79e730d1.bindTooltip(
+                `<div>
+                     BOLIVAR (LineaE) - 6150 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db0fe9fe4db9338f1c49cfeed2b6e307 = L.circleMarker(
+                [-34.60941259, -58.38677719],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.057132268985381, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c354185688b501d2dcaaef7c2d5c4fba = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2d805942b178909e1ee34042f9af4af1 = $(`<div id="html_2d805942b178909e1ee34042f9af4af1" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> SAENZ PEÑA<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 4620</div>`)[0];
+                popup_c354185688b501d2dcaaef7c2d5c4fba.setContent(html_2d805942b178909e1ee34042f9af4af1);
+            
+        
+
+        circle_marker_db0fe9fe4db9338f1c49cfeed2b6e307.bindPopup(popup_c354185688b501d2dcaaef7c2d5c4fba)
+        ;
+
+        
+    
+    
+            circle_marker_db0fe9fe4db9338f1c49cfeed2b6e307.bindTooltip(
+                `<div>
+                     SAENZ PEÑA (LineaA) - 4620 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0b97daefeeafd0bac6aefde6d3872c74 = L.circleMarker(
+                [-34.60964596, -58.39842699],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.3978863482130657, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_66c68a536431724ddb19b86dbaae58ab = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8d63a101b2709116db21beaa37cb34ef = $(`<div id="html_8d63a101b2709116db21beaa37cb34ef" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PASCO<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 1739</div>`)[0];
+                popup_66c68a536431724ddb19b86dbaae58ab.setContent(html_8d63a101b2709116db21beaa37cb34ef);
+            
+        
+
+        circle_marker_0b97daefeeafd0bac6aefde6d3872c74.bindPopup(popup_66c68a536431724ddb19b86dbaae58ab)
+        ;
+
+        
+    
+    
+            circle_marker_0b97daefeeafd0bac6aefde6d3872c74.bindTooltip(
+                `<div>
+                     PASCO (LineaA) - 1739 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83b5df794d294c544eaa08983c6689d4 = L.circleMarker(
+                [-34.60981725, -58.40670712],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.14924294910939, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_323c38fc6e55d9e3f25ff44f5514ff94 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_82cd78321db2baebc9be1c866fbc2101 = $(`<div id="html_82cd78321db2baebc9be1c866fbc2101" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PLAZA DE MISERERE<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 9393</div>`)[0];
+                popup_323c38fc6e55d9e3f25ff44f5514ff94.setContent(html_82cd78321db2baebc9be1c866fbc2101);
+            
+        
+
+        circle_marker_83b5df794d294c544eaa08983c6689d4.bindPopup(popup_323c38fc6e55d9e3f25ff44f5514ff94)
+        ;
+
+        
+    
+    
+            circle_marker_83b5df794d294c544eaa08983c6689d4.bindTooltip(
+                `<div>
+                     PLAZA DE MISERERE (LineaA) - 9393 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4582ba7900c95a02a745ab6acebf0edf = L.circleMarker(
+                [-34.60983358, -58.40120753],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.680999338239291, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_d03bb82c55ec74301ed383074c401a76 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6e4de398997778227d82d658360f17aa = $(`<div id="html_6e4de398997778227d82d658360f17aa" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> ALBERTI<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 2976</div>`)[0];
+                popup_d03bb82c55ec74301ed383074c401a76.setContent(html_6e4de398997778227d82d658360f17aa);
+            
+        
+
+        circle_marker_4582ba7900c95a02a745ab6acebf0edf.bindPopup(popup_d03bb82c55ec74301ed383074c401a76)
+        ;
+
+        
+    
+    
+            circle_marker_4582ba7900c95a02a745ab6acebf0edf.bindTooltip(
+                `<div>
+                     ALBERTI (LineaA) - 2976 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_28280145744b0da3c47316afdb9da852 = L.circleMarker(
+                [-34.61078169, -58.41518571],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.14871666901596, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c70b4b49bd2ed1d42a8d12a35562d0e8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_42890b6dc77d4f21ea60afd7349230db = $(`<div id="html_42890b6dc77d4f21ea60afd7349230db" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> LORIA<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 5021</div>`)[0];
+                popup_c70b4b49bd2ed1d42a8d12a35562d0e8.setContent(html_42890b6dc77d4f21ea60afd7349230db);
+            
+        
+
+        circle_marker_28280145744b0da3c47316afdb9da852.bindPopup(popup_c70b4b49bd2ed1d42a8d12a35562d0e8)
+        ;
+
+        
+    
+    
+            circle_marker_28280145744b0da3c47316afdb9da852.bindTooltip(
+                `<div>
+                     LORIA (LineaA) - 5021 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7fbd56133376962cd01a54b2c1cf9463 = L.circleMarker(
+                [-34.61177023, -58.42181567],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.285811698676728, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_dc626cfeef10ece84e29e396f61c4409 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_096611c80ef4e746c8b9c7690b4f59e7 = $(`<div id="html_096611c80ef4e746c8b9c7690b4f59e7" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CASTRO BARROS<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 5620</div>`)[0];
+                popup_dc626cfeef10ece84e29e396f61c4409.setContent(html_096611c80ef4e746c8b9c7690b4f59e7);
+            
+        
+
+        circle_marker_7fbd56133376962cd01a54b2c1cf9463.bindPopup(popup_dc626cfeef10ece84e29e396f61c4409)
+        ;
+
+        
+    
+    
+            circle_marker_7fbd56133376962cd01a54b2c1cf9463.bindTooltip(
+                `<div>
+                     CASTRO BARROS (LineaA) - 5620 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_44d5e4b396b77dd31ae558c18ad732f7 = L.circleMarker(
+                [-34.61261728, -58.38044447],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.67844325921512, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_e9f27918cd834ad92e7be386e494c66b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_06a5d8b2a23d67b3466e45ec978766e5 = $(`<div id="html_06a5d8b2a23d67b3466e45ec978766e5" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> MORENO<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 2965</div>`)[0];
+                popup_e9f27918cd834ad92e7be386e494c66b.setContent(html_06a5d8b2a23d67b3466e45ec978766e5);
+            
+        
+
+        circle_marker_44d5e4b396b77dd31ae558c18ad732f7.bindPopup(popup_e9f27918cd834ad92e7be386e494c66b)
+        ;
+
+        
+    
+    
+            circle_marker_44d5e4b396b77dd31ae558c18ad732f7.bindTooltip(
+                `<div>
+                     MORENO (LineaC) - 2965 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db987162e2608731aae0f8f7c4822df9 = L.circleMarker(
+                [-34.61284911, -58.37758089],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.528824823462906, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_4a1ea046651d2fae91b98fb627228b19 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8fcf1e9b6fa8a43bdb25783591a83a7c = $(`<div id="html_8fcf1e9b6fa8a43bdb25783591a83a7c" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> BELGRANO<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 2311</div>`)[0];
+                popup_4a1ea046651d2fae91b98fb627228b19.setContent(html_8fcf1e9b6fa8a43bdb25783591a83a7c);
+            
+        
+
+        circle_marker_db987162e2608731aae0f8f7c4822df9.bindPopup(popup_4a1ea046651d2fae91b98fb627228b19)
+        ;
+
+        
+    
+    
+            circle_marker_db987162e2608731aae0f8f7c4822df9.bindTooltip(
+                `<div>
+                     BELGRANO (LineaE) - 2311 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9e9697bd31faf6a72ae8f6a6b211ef3c = L.circleMarker(
+                [-34.61520561, -58.42950032],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.4785932220931555, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_cde0cee94e87bfcd992db2c3d683ca94 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ff2e4ee4b30a5422884bd6398742a53f = $(`<div id="html_ff2e4ee4b30a5422884bd6398742a53f" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> RIO DE JANEIRO<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 6462</div>`)[0];
+                popup_cde0cee94e87bfcd992db2c3d683ca94.setContent(html_ff2e4ee4b30a5422884bd6398742a53f);
+            
+        
+
+        circle_marker_9e9697bd31faf6a72ae8f6a6b211ef3c.bindPopup(popup_cde0cee94e87bfcd992db2c3d683ca94)
+        ;
+
+        
+    
+    
+            circle_marker_9e9697bd31faf6a72ae8f6a6b211ef3c.bindTooltip(
+                `<div>
+                     RIO DE JANEIRO (LineaA) - 6462 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9fbc59e161736953697df3096766a325 = L.circleMarker(
+                [-34.61524215, -58.40473172],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.058225007207325, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_01fc48b1bd122304a300373a98a987c3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f60b248db546922d6ec1d253e5b0b44a = $(`<div id="html_f60b248db546922d6ec1d253e5b0b44a" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> VENEZUELA<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 4625</div>`)[0];
+                popup_01fc48b1bd122304a300373a98a987c3.setContent(html_f60b248db546922d6ec1d253e5b0b44a);
+            
+        
+
+        circle_marker_9fbc59e161736953697df3096766a325.bindPopup(popup_01fc48b1bd122304a300373a98a987c3)
+        ;
+
+        
+    
+    
+            circle_marker_9fbc59e161736953697df3096766a325.bindTooltip(
+                `<div>
+                     VENEZUELA (LineaH) - 4625 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_49179627dfd8d46fdf0be4aae50de54f = L.circleMarker(
+                [-34.61793739, -58.38153494],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.459354210551137, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_09e51a4dfcaf39eae56c164446d26dee = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_acfbbd60f3518529276ec714e2077951 = $(`<div id="html_acfbbd60f3518529276ec714e2077951" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> INDEPENDENCIA<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 6378</div>`)[0];
+                popup_09e51a4dfcaf39eae56c164446d26dee.setContent(html_acfbbd60f3518529276ec714e2077951);
+            
+        
+
+        circle_marker_49179627dfd8d46fdf0be4aae50de54f.bindPopup(popup_09e51a4dfcaf39eae56c164446d26dee)
+        ;
+
+        
+    
+    
+            circle_marker_49179627dfd8d46fdf0be4aae50de54f.bindTooltip(
+                `<div>
+                     INDEPENDENCIA (LineaE) - 6378 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8da388971023ee830159171603c5317f = L.circleMarker(
+                [-34.6181256, -58.38017361],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.9121248761695004, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_72beb94fe4ea8f1702ab16dc78fe8ea2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4a2f73b3be3b91e5eea742890939f763 = $(`<div id="html_4a2f73b3be3b91e5eea742890939f763" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> INDEPENDENCIA<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 3987</div>`)[0];
+                popup_72beb94fe4ea8f1702ab16dc78fe8ea2.setContent(html_4a2f73b3be3b91e5eea742890939f763);
+            
+        
+
+        circle_marker_8da388971023ee830159171603c5317f.bindPopup(popup_72beb94fe4ea8f1702ab16dc78fe8ea2)
+        ;
+
+        
+    
+    
+            circle_marker_8da388971023ee830159171603c5317f.bindTooltip(
+                `<div>
+                     INDEPENDENCIA (LineaC) - 3987 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aee3353db89c40a7b9f7b04b9d219a42 = L.circleMarker(
+                [-34.61827997, -58.43642853],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.9207888381638245, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_3450ea11fab1e97dcbcc17735f02d8a2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_834c07292a3a4af6730e4a954b559b8e = $(`<div id="html_834c07292a3a4af6730e4a954b559b8e" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> ACOYTE<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 8395</div>`)[0];
+                popup_3450ea11fab1e97dcbcc17735f02d8a2.setContent(html_834c07292a3a4af6730e4a954b559b8e);
+            
+        
+
+        circle_marker_aee3353db89c40a7b9f7b04b9d219a42.bindPopup(popup_3450ea11fab1e97dcbcc17735f02d8a2)
+        ;
+
+        
+    
+    
+            circle_marker_aee3353db89c40a7b9f7b04b9d219a42.bindTooltip(
+                `<div>
+                     ACOYTE (LineaA) - 8395 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_82a195eb1fe888ac070b54f1c1df6f68 = L.circleMarker(
+                [-34.62040521, -58.44117763],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.915607556690709, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_63418df21de554d9279c40e040fa5581 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4cf6c082728f000295d2c3e65a645555 = $(`<div id="html_4cf6c082728f000295d2c3e65a645555" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PRIMERA JUNTA<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 8372</div>`)[0];
+                popup_63418df21de554d9279c40e040fa5581.setContent(html_4cf6c082728f000295d2c3e65a645555);
+            
+        
+
+        circle_marker_82a195eb1fe888ac070b54f1c1df6f68.bindPopup(popup_63418df21de554d9279c40e040fa5581)
+        ;
+
+        
+    
+    
+            circle_marker_82a195eb1fe888ac070b54f1c1df6f68.bindTooltip(
+                `<div>
+                     PRIMERA JUNTA (LineaA) - 8372 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2e9fc46791dfdaf98e4c04d9cf5f26ff = L.circleMarker(
+                [-34.62191673, -58.37992118],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.6793471189312577, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_e162fc27587c46c1540cf71dc5d09bbf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c43aecebf7b7db4604aa79691c1f23c5 = $(`<div id="html_c43aecebf7b7db4604aa79691c1f23c5" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> SAN JUAN<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 2969</div>`)[0];
+                popup_e162fc27587c46c1540cf71dc5d09bbf.setContent(html_c43aecebf7b7db4604aa79691c1f23c5);
+            
+        
+
+        circle_marker_2e9fc46791dfdaf98e4c04d9cf5f26ff.bindPopup(popup_e162fc27587c46c1540cf71dc5d09bbf)
+        ;
+
+        
+    
+    
+            circle_marker_2e9fc46791dfdaf98e4c04d9cf5f26ff.bindTooltip(
+                `<div>
+                     SAN JUAN (LineaC) - 2969 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5f7d9d9b02a0c82dbbe98699c79c7e93 = L.circleMarker(
+                [-34.62233949, -58.38514855],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.4367558908176985, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_7f577001ac8970293d014dd7db9e108a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_290242fc4d85d86ef8e3f09d33fab619 = $(`<div id="html_290242fc4d85d86ef8e3f09d33fab619" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> SAN JOSE<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 1909</div>`)[0];
+                popup_7f577001ac8970293d014dd7db9e108a.setContent(html_290242fc4d85d86ef8e3f09d33fab619);
+            
+        
+
+        circle_marker_5f7d9d9b02a0c82dbbe98699c79c7e93.bindPopup(popup_7f577001ac8970293d014dd7db9e108a)
+        ;
+
+        
+    
+    
+            circle_marker_5f7d9d9b02a0c82dbbe98699c79c7e93.bindTooltip(
+                `<div>
+                     SAN JOSE (LineaE) - 1909 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7ee847956cfc3265269e3ff9784397ac = L.circleMarker(
+                [-34.62271967, -58.3915117],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.5985779601616192, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_f5f3abb032ca78e05522f3bfc57de5e3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7d4dad6a45ef153d9889513e96a8d9f0 = $(`<div id="html_7d4dad6a45ef153d9889513e96a8d9f0" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> ENTRE RIOS - RODOLFO WALSH<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 2616</div>`)[0];
+                popup_f5f3abb032ca78e05522f3bfc57de5e3.setContent(html_7d4dad6a45ef153d9889513e96a8d9f0);
+            
+        
+
+        circle_marker_7ee847956cfc3265269e3ff9784397ac.bindPopup(popup_f5f3abb032ca78e05522f3bfc57de5e3)
+        ;
+
+        
+    
+    
+            circle_marker_7ee847956cfc3265269e3ff9784397ac.bindTooltip(
+                `<div>
+                     ENTRE RIOS - RODOLFO WALSH (LineaE) - 2616 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_afc309eea4d97b711652f5b7a6dd8ef5 = L.circleMarker(
+                [-34.62309232, -58.40232273],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.934378441396668, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_d787f19513fe9c2cead86926a123ce6f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_62c86a2f543a460786acb989cddb842b = $(`<div id="html_62c86a2f543a460786acb989cddb842b" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> HUMBERTO 1°<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 4084</div>`)[0];
+                popup_d787f19513fe9c2cead86926a123ce6f.setContent(html_62c86a2f543a460786acb989cddb842b);
+            
+        
+
+        circle_marker_afc309eea4d97b711652f5b7a6dd8ef5.bindPopup(popup_d787f19513fe9c2cead86926a123ce6f)
+        ;
+
+        
+    
+    
+            circle_marker_afc309eea4d97b711652f5b7a6dd8ef5.bindTooltip(
+                `<div>
+                     HUMBERTO 1° (LineaH) - 4084 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5ef4a52dda0a670d671308104b9e5480 = L.circleMarker(
+                [-34.62310987, -58.39706807],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.3719280006216064, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_89e66301b9868c66eb9a2bf6d0f51f5f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_85d7662444ebde90b5d8fe7ef631c879 = $(`<div id="html_85d7662444ebde90b5d8fe7ef631c879" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PICHINCHA<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 1626</div>`)[0];
+                popup_89e66301b9868c66eb9a2bf6d0f51f5f.setContent(html_85d7662444ebde90b5d8fe7ef631c879);
+            
+        
+
+        circle_marker_5ef4a52dda0a670d671308104b9e5480.bindPopup(popup_89e66301b9868c66eb9a2bf6d0f51f5f)
+        ;
+
+        
+    
+    
+            circle_marker_5ef4a52dda0a670d671308104b9e5480.bindTooltip(
+                `<div>
+                     PICHINCHA (LineaE) - 1626 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dbaa462934bd82ab21257e3340868ca0 = L.circleMarker(
+                [-34.62352895, -58.44864765],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.995756945963928, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_d2fd8351c86033bfff5a3403e1d17a40 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_46b32ed475a0b0c697f8700361489b44 = $(`<div id="html_46b32ed475a0b0c697f8700361489b44" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PUAN<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 4352</div>`)[0];
+                popup_d2fd8351c86033bfff5a3403e1d17a40.setContent(html_46b32ed475a0b0c697f8700361489b44);
+            
+        
+
+        circle_marker_dbaa462934bd82ab21257e3340868ca0.bindPopup(popup_d2fd8351c86033bfff5a3403e1d17a40)
+        ;
+
+        
+    
+    
+            circle_marker_dbaa462934bd82ab21257e3340868ca0.bindTooltip(
+                `<div>
+                     PUAN (LineaA) - 4352 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c783ed8aed39508748be94966f1bbd6b = L.circleMarker(
+                [-34.62386571, -58.40293658],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.4454503205555347, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_9e95341631a19a7169a9b51c4f45c062 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_640377373a0bfbed11d897b8eeebf5d1 = $(`<div id="html_640377373a0bfbed11d897b8eeebf5d1" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> JUJUY<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 1947</div>`)[0];
+                popup_9e95341631a19a7169a9b51c4f45c062.setContent(html_640377373a0bfbed11d897b8eeebf5d1);
+            
+        
+
+        circle_marker_c783ed8aed39508748be94966f1bbd6b.bindPopup(popup_9e95341631a19a7169a9b51c4f45c062)
+        ;
+
+        
+    
+    
+            circle_marker_c783ed8aed39508748be94966f1bbd6b.bindTooltip(
+                `<div>
+                     JUJUY (LineaE) - 1947 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7d22792e6e52cdc5a0463503ff151a0e = L.circleMarker(
+                [-34.62465379, -58.40939078],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.5290952066091323, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_0448ed849983e7d3c020a90f05995c83 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_38341df7f9fd1cd59ee6589f877df367 = $(`<div id="html_38341df7f9fd1cd59ee6589f877df367" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> URQUIZA<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 2312</div>`)[0];
+                popup_0448ed849983e7d3c020a90f05995c83.setContent(html_38341df7f9fd1cd59ee6589f877df367);
+            
+        
+
+        circle_marker_7d22792e6e52cdc5a0463503ff151a0e.bindPopup(popup_0448ed849983e7d3c020a90f05995c83)
+        ;
+
+        
+    
+    
+            circle_marker_7d22792e6e52cdc5a0463503ff151a0e.bindTooltip(
+                `<div>
+                     URQUIZA (LineaE) - 2312 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_40e33936f42bdccfcc8cab8a694a9c79 = L.circleMarker(
+                [-34.62536611, -58.41553282],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.7208647084349153, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_a75bdce0eda9d5d423a929332341f895 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dc74f84b32b944bd97b52dea21a9d48f = $(`<div id="html_dc74f84b32b944bd97b52dea21a9d48f" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> BOEDO<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 3151</div>`)[0];
+                popup_a75bdce0eda9d5d423a929332341f895.setContent(html_dc74f84b32b944bd97b52dea21a9d48f);
+            
+        
+
+        circle_marker_40e33936f42bdccfcc8cab8a694a9c79.bindPopup(popup_a75bdce0eda9d5d423a929332341f895)
+        ;
+
+        
+    
+    
+            circle_marker_40e33936f42bdccfcc8cab8a694a9c79.bindTooltip(
+                `<div>
+                     BOEDO (LineaE) - 3151 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fe3add1864e99a8ecd05c1ea06e0aaf8 = L.circleMarker(
+                [-34.62666659, -58.4567098],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.468592487445855, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_033ea01d106c0b77f10b070c0652248d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fe2ce3e76d496e761a4a782bebaea62a = $(`<div id="html_fe2ce3e76d496e761a4a782bebaea62a" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CARABOBO<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 6419</div>`)[0];
+                popup_033ea01d106c0b77f10b070c0652248d.setContent(html_fe2ce3e76d496e761a4a782bebaea62a);
+            
+        
+
+        circle_marker_fe3add1864e99a8ecd05c1ea06e0aaf8.bindPopup(popup_033ea01d106c0b77f10b070c0652248d)
+        ;
+
+        
+    
+    
+            circle_marker_fe3add1864e99a8ecd05c1ea06e0aaf8.bindTooltip(
+                `<div>
+                     CARABOBO (LineaA) - 6419 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c6e1655e6734359007ba4c4b03a4f49e = L.circleMarker(
+                [-34.62701547, -58.42678902],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.786167385733768, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_086f7a8263010ea32ab6d945103a5d52 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fb68a729a8dc24feaaa8b7a15755a52b = $(`<div id="html_fb68a729a8dc24feaaa8b7a15755a52b" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> AV. LA PLATA<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 3436</div>`)[0];
+                popup_086f7a8263010ea32ab6d945103a5d52.setContent(html_fb68a729a8dc24feaaa8b7a15755a52b);
+            
+        
+
+        circle_marker_c6e1655e6734359007ba4c4b03a4f49e.bindPopup(popup_086f7a8263010ea32ab6d945103a5d52)
+        ;
+
+        
+    
+    
+            circle_marker_c6e1655e6734359007ba4c4b03a4f49e.bindTooltip(
+                `<div>
+                     AV. LA PLATA (LineaE) - 3436 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ebd0f914efc1bca59f2510a09ed7699 = L.circleMarker(
+                [-34.62761945, -58.38143443],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00008B", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.0, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_6b050ccfc39ae9f507ccfc70bc8efeb9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7dda9a627383010d24235ad8f0acec7d = $(`<div id="html_7dda9a627383010d24235ad8f0acec7d" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CONSTITUCION<br><b>Línea:</b> LineaC<br><b>Flujo promedio diario:</b> 52447</div>`)[0];
+                popup_6b050ccfc39ae9f507ccfc70bc8efeb9.setContent(html_7dda9a627383010d24235ad8f0acec7d);
+            
+        
+
+        circle_marker_3ebd0f914efc1bca59f2510a09ed7699.bindPopup(popup_6b050ccfc39ae9f507ccfc70bc8efeb9)
+        ;
+
+        
+    
+    
+            circle_marker_3ebd0f914efc1bca59f2510a09ed7699.bindTooltip(
+                `<div>
+                     CONSTITUCION (LineaC) - 52447 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_97953ee85093eea1762a02d60e8c6cdd = L.circleMarker(
+                [-34.62801755, -58.43381625],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.6178969227469273, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_b183aeff206661b44fb70d3ce11bff8d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c5cc67b282b250cd7adbfbcf6e523571 = $(`<div id="html_c5cc67b282b250cd7adbfbcf6e523571" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> JOSE MARIA MORENO<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 2701</div>`)[0];
+                popup_b183aeff206661b44fb70d3ce11bff8d.setContent(html_c5cc67b282b250cd7adbfbcf6e523571);
+            
+        
+
+        circle_marker_97953ee85093eea1762a02d60e8c6cdd.bindPopup(popup_b183aeff206661b44fb70d3ce11bff8d)
+        ;
+
+        
+    
+    
+            circle_marker_97953ee85093eea1762a02d60e8c6cdd.bindTooltip(
+                `<div>
+                     JOSE MARIA MORENO (LineaE) - 2701 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_74c29bc7b9f6ecd958ff874acb6f310c = L.circleMarker(
+                [-34.62908723, -58.46354051],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.695561363925875, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_0ca17603f48f9e6eb1a9b0b9420c6968 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ec2240a3339923b33a7d3b29dd5d9a02 = $(`<div id="html_ec2240a3339923b33a7d3b29dd5d9a02" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> SAN JOSÉ DE FLORES<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 7411</div>`)[0];
+                popup_0ca17603f48f9e6eb1a9b0b9420c6968.setContent(html_ec2240a3339923b33a7d3b29dd5d9a02);
+            
+        
+
+        circle_marker_74c29bc7b9f6ecd958ff874acb6f310c.bindPopup(popup_0ca17603f48f9e6eb1a9b0b9420c6968)
+        ;
+
+        
+    
+    
+            circle_marker_74c29bc7b9f6ecd958ff874acb6f310c.bindTooltip(
+                `<div>
+                     SAN JOSÉ DE FLORES (LineaA) - 7411 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_30ff7b34c28c7b4ad2d2f9e30f279989 = L.circleMarker(
+                [-34.62937566, -58.40096956],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.7958649093715056, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c63758c0836bb84ccf689f566b6efd99 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2801a6b709ed5189b51717159e5cfec1 = $(`<div id="html_2801a6b709ed5189b51717159e5cfec1" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> INCLAN - MEZQUITA AL AHMAD<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 3478</div>`)[0];
+                popup_c63758c0836bb84ccf689f566b6efd99.setContent(html_2801a6b709ed5189b51717159e5cfec1);
+            
+        
+
+        circle_marker_30ff7b34c28c7b4ad2d2f9e30f279989.bindPopup(popup_c63758c0836bb84ccf689f566b6efd99)
+        ;
+
+        
+    
+    
+            circle_marker_30ff7b34c28c7b4ad2d2f9e30f279989.bindTooltip(
+                `<div>
+                     INCLAN - MEZQUITA AL AHMAD (LineaH) - 3478 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1a78f77a565b5271e1f3f08f93363210 = L.circleMarker(
+                [-34.63070709, -58.46963963],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00BFFF", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.257819957431867, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_8f5d96ca39e3267997861ab9526b1006 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_af53044cfbee0f5f1eefa0157deb22a0 = $(`<div id="html_af53044cfbee0f5f1eefa0157deb22a0" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> SAN PEDRITO<br><b>Línea:</b> LineaA<br><b>Flujo promedio diario:</b> 18609</div>`)[0];
+                popup_8f5d96ca39e3267997861ab9526b1006.setContent(html_af53044cfbee0f5f1eefa0157deb22a0);
+            
+        
+
+        circle_marker_1a78f77a565b5271e1f3f08f93363210.bindPopup(popup_8f5d96ca39e3267997861ab9526b1006)
+        ;
+
+        
+    
+    
+            circle_marker_1a78f77a565b5271e1f3f08f93363210.bindTooltip(
+                `<div>
+                     SAN PEDRITO (LineaA) - 18609 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4b21e449911c7eb1437c48d29f58b349 = L.circleMarker(
+                [-34.63104184, -58.44217071],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.6381701313192316, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_6e5a395f6f1e727df5e832675c13ba78 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7293c90b6a3f198cbd5290eb6e1e5105 = $(`<div id="html_7293c90b6a3f198cbd5290eb6e1e5105" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> EMILIO MITRE<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 2789</div>`)[0];
+                popup_6e5a395f6f1e727df5e832675c13ba78.setContent(html_7293c90b6a3f198cbd5290eb6e1e5105);
+            
+        
+
+        circle_marker_4b21e449911c7eb1437c48d29f58b349.bindPopup(popup_6e5a395f6f1e727df5e832675c13ba78)
+        ;
+
+        
+    
+    
+            circle_marker_4b21e449911c7eb1437c48d29f58b349.bindTooltip(
+                `<div>
+                     EMILIO MITRE (LineaE) - 2789 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8ead3cacb208859f36c015598ad66155 = L.circleMarker(
+                [-34.63575018, -58.39892759],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.9752672165845864, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_9c65bfde740bb4c3abb47fc936167f94 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1f6044dba575799834a8b6d2d4db0fc2 = $(`<div id="html_1f6044dba575799834a8b6d2d4db0fc2" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> CASEROS<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 4262</div>`)[0];
+                popup_9c65bfde740bb4c3abb47fc936167f94.setContent(html_1f6044dba575799834a8b6d2d4db0fc2);
+            
+        
+
+        circle_marker_8ead3cacb208859f36c015598ad66155.bindPopup(popup_9c65bfde740bb4c3abb47fc936167f94)
+        ;
+
+        
+    
+    
+            circle_marker_8ead3cacb208859f36c015598ad66155.bindTooltip(
+                `<div>
+                     CASEROS (LineaH) - 4262 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b730caa283b421c548b714cfdb0cc648 = L.circleMarker(
+                [-34.63638919, -58.45027826],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.2949209582314727, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_f5704db9d304dcb00e547eb7536cfc42 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bd3d48cb287df2fca7ea48277238c452 = $(`<div id="html_bd3d48cb287df2fca7ea48277238c452" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> MEDALLA MILAGROSA<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 1289</div>`)[0];
+                popup_f5704db9d304dcb00e547eb7536cfc42.setContent(html_bd3d48cb287df2fca7ea48277238c452);
+            
+        
+
+        circle_marker_b730caa283b421c548b714cfdb0cc648.bindPopup(popup_f5704db9d304dcb00e547eb7536cfc42)
+        ;
+
+        
+    
+    
+            circle_marker_b730caa283b421c548b714cfdb0cc648.bindTooltip(
+                `<div>
+                     MEDALLA MILAGROSA (LineaE) - 1289 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7cee5e7a708be8bb2e383758d6aebdd9 = L.circleMarker(
+                [-34.63840599, -58.40579483],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.5175879045697265, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_c02c26c97fadb9c3b610fb1ffec4239c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c377421f6af178be63502c735ab5e6b6 = $(`<div id="html_c377421f6af178be63502c735ab5e6b6" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PARQUE PATRICIOS<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 6633</div>`)[0];
+                popup_c02c26c97fadb9c3b610fb1ffec4239c.setContent(html_c377421f6af178be63502c735ab5e6b6);
+            
+        
+
+        circle_marker_7cee5e7a708be8bb2e383758d6aebdd9.bindPopup(popup_c02c26c97fadb9c3b610fb1ffec4239c)
+        ;
+
+        
+    
+    
+            circle_marker_7cee5e7a708be8bb2e383758d6aebdd9.bindTooltip(
+                `<div>
+                     PARQUE PATRICIOS (LineaH) - 6633 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3f13f7e573ddc997ad127c29293363f3 = L.circleMarker(
+                [-34.64013735, -58.45789176],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.338386610192153, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_b21c700132847052fdc221569064b98d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fe630888dddf74ad3f9cb608fe2ab610 = $(`<div id="html_fe630888dddf74ad3f9cb608fe2ab610" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> VARELA<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 1479</div>`)[0];
+                popup_b21c700132847052fdc221569064b98d.setContent(html_fe630888dddf74ad3f9cb608fe2ab610);
+            
+        
+
+        circle_marker_3f13f7e573ddc997ad127c29293363f3.bindPopup(popup_b21c700132847052fdc221569064b98d)
+        ;
+
+        
+    
+    
+            circle_marker_3f13f7e573ddc997ad127c29293363f3.bindTooltip(
+                `<div>
+                     VARELA (LineaE) - 1479 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_36480b8335f156406799dc824b0bceb4 = L.circleMarker(
+                [-34.64126894, -58.41238515],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#DAA520", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.065316283700389, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_64358a11d462a190e9cb08abfbdff06c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_de85158860c28f79f5cc95f2174786af = $(`<div id="html_de85158860c28f79f5cc95f2174786af" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> HOSPITALES<br><b>Línea:</b> LineaH<br><b>Flujo promedio diario:</b> 9027</div>`)[0];
+                popup_64358a11d462a190e9cb08abfbdff06c.setContent(html_de85158860c28f79f5cc95f2174786af);
+            
+        
+
+        circle_marker_36480b8335f156406799dc824b0bceb4.bindPopup(popup_64358a11d462a190e9cb08abfbdff06c)
+        ;
+
+        
+    
+    
+            circle_marker_36480b8335f156406799dc824b0bceb4.bindTooltip(
+                `<div>
+                     HOSPITALES (LineaH) - 9027 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d3e704b691098d49a63490b37d0757eb = L.circleMarker(
+                [-34.64331216, -58.46165176],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800080", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.354070205514225, "stroke": true, "weight": 3}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+        var popup_cece0c04c97d3cd36b42c2cdeb572351 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_777817264a724475d5eebdc87dfc5f38 = $(`<div id="html_777817264a724475d5eebdc87dfc5f38" style="width: 100.0%; height: 100.0%;"><b>Estación:</b> PLAZA DE LOS VIRREYES - EVA PERON<br><b>Línea:</b> LineaE<br><b>Flujo promedio diario:</b> 5918</div>`)[0];
+                popup_cece0c04c97d3cd36b42c2cdeb572351.setContent(html_777817264a724475d5eebdc87dfc5f38);
+            
+        
+
+        circle_marker_d3e704b691098d49a63490b37d0757eb.bindPopup(popup_cece0c04c97d3cd36b42c2cdeb572351)
+        ;
+
+        
+    
+    
+            circle_marker_d3e704b691098d49a63490b37d0757eb.bindTooltip(
+                `<div>
+                     PLAZA DE LOS VIRREYES - EVA PERON (LineaE) - 5918 pax/día
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_27b2753d11531c135503c682b1f7d5f9 = L.polyline(
+                [[-34.60881031, -58.3709685], [-34.60855907, -58.37426773], [-34.60888172, -58.37908515], [-34.60909981, -58.3822324], [-34.60941259, -58.38677719], [-34.60922568, -58.39266882], [-34.60964596, -58.39842699], [-34.60983358, -58.40120753], [-34.60981725, -58.40670712], [-34.61078169, -58.41518571], [-34.61177023, -58.42181567], [-34.61520561, -58.42950032], [-34.61827997, -58.43642853], [-34.62040521, -58.44117763], [-34.62352895, -58.44864765], [-34.62666659, -58.4567098], [-34.62908723, -58.46354051], [-34.63070709, -58.46963963]],
+                {"bubblingMouseEvents": true, "color": "#00BFFF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#00BFFF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+            poly_line_27b2753d11531c135503c682b1f7d5f9.bindTooltip(
+                `<div>
+                     Línea LineaA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b4ff1273184d5b082bd6ecab85948f6a = L.polyline(
+                [[-34.57431891, -58.48638535], [-34.57779738, -58.4810135], [-34.58124885, -58.47424083], [-34.58409462, -58.4662272], [-34.58719785, -58.45502929], [-34.59171815, -58.44757309], [-34.59896736, -58.4397715], [-34.60216223, -58.43127386], [-34.6031649, -58.42096247], [-34.60407952, -58.4117626], [-34.60458106, -58.40539944], [-34.60464297, -58.39947426], [-34.60441954, -58.39231424], [-34.60409355, -58.38729613], [-34.60363711, -58.38071485], [-34.60329729, -58.37507152], [-34.6029895, -58.36992985]],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF0000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+            poly_line_b4ff1273184d5b082bd6ecab85948f6a.bindTooltip(
+                `<div>
+                     Línea LineaB
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5acb4499e3756929d7b903e9230585fd = L.polyline(
+                [[-34.59119381, -58.37401822], [-34.5950574, -58.37781905], [-34.60176992, -58.37815578], [-34.60484374, -58.37952998], [-34.60898331, -58.38061072], [-34.61261728, -58.38044447], [-34.6181256, -58.38017361], [-34.62191673, -58.37992118], [-34.62761945, -58.38143443]],
+                {"bubblingMouseEvents": true, "color": "#00008B", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#00008B", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+            poly_line_5acb4499e3756929d7b903e9230585fd.bindTooltip(
+                `<div>
+                     Línea LineaC
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_42ef206810eabb99abec6780ca4b70b6 = L.polyline(
+                [[-34.55564177, -58.46237841], [-34.56230909, -58.45648913], [-34.56621524, -58.4521256], [-34.57001231, -58.44466815], [-34.57517836, -58.43501353], [-34.57842202, -58.42571144], [-34.58141119, -58.42119601], [-34.58515594, -58.41595542], [-34.58823711, -58.4112939], [-34.59162784, -58.40716132], [-34.59442572, -58.40239534], [-34.59975708, -58.39792376], [-34.59963955, -58.39312518], [-34.60158717, -58.38514236], [-34.6042452, -58.38057434], [-34.60780234, -58.37395581]],
+                {"bubblingMouseEvents": true, "color": "#228B22", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#228B22", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+            poly_line_42ef206810eabb99abec6780ca4b70b6.bindTooltip(
+                `<div>
+                     Línea LineaD
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d404bdafb7d510ec7515a92fceb6d157 = L.polyline(
+                [[-34.59211436, -58.37584984], [-34.59659682, -58.37170033], [-34.60301391, -58.3704125], [-34.60924243, -58.37368422], [-34.61284911, -58.37758089], [-34.61793739, -58.38153494], [-34.62233949, -58.38514855], [-34.62271967, -58.3915117], [-34.62310987, -58.39706807], [-34.62386571, -58.40293658], [-34.62465379, -58.40939078], [-34.62536611, -58.41553282], [-34.62701547, -58.42678902], [-34.62801755, -58.43381625], [-34.63104184, -58.44217071], [-34.63638919, -58.45027826], [-34.64013735, -58.45789176], [-34.64331216, -58.46165176]],
+                {"bubblingMouseEvents": true, "color": "#800080", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#800080", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+            poly_line_d404bdafb7d510ec7515a92fceb6d157.bindTooltip(
+                `<div>
+                     Línea LineaE
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_71259a6a9de976fb507a7132b4ee236e = L.polyline(
+                [[-34.58303634, -58.39101883], [-34.58746155, -58.39721558], [-34.5945254, -58.40237618], [-34.59845511, -58.4037215], [-34.6044902, -58.40545033], [-34.60893524, -58.40603638], [-34.61524215, -58.40473172], [-34.62309232, -58.40232273], [-34.62937566, -58.40096956], [-34.63575018, -58.39892759], [-34.63840599, -58.40579483], [-34.64126894, -58.41238515]],
+                {"bubblingMouseEvents": true, "color": "#DAA520", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#DAA520", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7f2df741e76c9eee058cc5fcd89f370c);
+        
+    
+            poly_line_71259a6a9de976fb507a7132b4ee236e.bindTooltip(
+                `<div>
+                     Línea LineaH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
