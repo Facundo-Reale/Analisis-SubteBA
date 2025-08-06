@@ -91,4 +91,17 @@ Se puede ver el mapa interactivo con la visualización geográfica de las estaci
 
 La estacion Constitución y retiro son las que se observa un mayor flujo promedio de pasajeros, esto se puede deber a las altas conexiones con trenes y colectivos de estas estaciones, tambien explica el alto flujo de pasajeros en la Linea C
 
+### 📈 Conclusión y Próximos Pasos
+El análisis exploratorio permitió comprender con profundidad la dinámica del uso del SubteBA entre 2022 y 2024, revelando patrones estacionales, diferencias estructurales entre líneas y comportamientos distintos según el día de la semana. 
+
+Esta base analítica sólida habilita el desarrollo de modelos predictivos capaces de anticipar la demanda de pasajeros a nivel estación-línea-fecha. Dichos modelos podrían ser utilizados para:
+
+- Optimizar la frecuencia de trenes en función de la demanda esperada.
+
+- Detectar anomalías o eventos atípicos
+
+- Mejorar la planificación operativa y la asignación de recursos.
+
+En una próxima etapa, se podría avanzar con técnicas de aprendizaje supervisado (por ejemplo, Random Forest, XGBoost o LSTM para series temporales), entrenando modelos sobre los datos agregados ya preparados. Esto permitiría evaluar escenarios futuros y fortalecer la toma de decisiones basada en datos dentro del sistema de transporte público porteño.
+
 
