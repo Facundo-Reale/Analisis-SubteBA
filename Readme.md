@@ -88,7 +88,7 @@ Con esta información, se generó un **mapa interactivo** con Folium que permite
 Este mapa facilita la comprensión espacial del flujo de pasajeros y permite identificar patrones y puntos clave en la red del SubteBA.
 Se puede ver el mapa interactivo con la visualización geográfica de las estaciones y datos [aquí](https://facundo-reale.github.io/Analisis-SubteBA/flujo_estaciones_final.html).
 
-La estacion Constitución y retiro son las que se observa un mayor flujo promedio de pasajeros, esto se puede deber a las altas conexiones con trenes y colectivos de estas estaciones, tambien explica el alto flujo de pasajeros en la Linea C
+La estacion Constitución y Retiro son las que se observa un mayor flujo promedio de pasajeros, esto se puede deber a las altas conexiones con trenes y colectivos de estas estaciones, tambien explica el alto flujo de pasajeros en la Linea C.
 
 ### 📈 Conclusión y Próximos Pasos
 El análisis exploratorio permitió comprender con profundidad la dinámica del uso del SubteBA entre 2022 y 2024, revelando patrones estacionales, diferencias estructurales entre líneas y comportamientos distintos según el día de la semana. 
